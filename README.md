@@ -20,7 +20,7 @@
 3. Retrieve and display the AI's guess based on the drawing.
 4. Compare the AI's guess with the guesses submitted by players.
 
-These tasks cover the core functionalities of your game app. Each task involves both frontend (React Native) and backend (server-side, possibly using Node.js or another technology) development aspects. If you need detailed guidance on any specific task or technology, feel free to ask!
+### Wireframe
 
 ### UML
 
