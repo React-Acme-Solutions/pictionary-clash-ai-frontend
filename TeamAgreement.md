@@ -1,6 +1,6 @@
 # Group Project: Team Agreement
 
-Organization: React Solutions
+Organization: React ACME Solutions
 
 Collaborators: Adam, Armen, Jedidiah, Ryan, Demarquies
 
