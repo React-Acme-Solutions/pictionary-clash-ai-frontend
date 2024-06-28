@@ -1,4 +1,4 @@
-### PictureClashAI
+# PictureClashAI
 
 
 ### User Story 1: Drawing and Guessing
@@ -21,7 +21,7 @@
 4. Compare the AI's guess with the guesses submitted by players.
 
 ### Wireframe
-
+![img.png](img.png)
 ### UML
 
     ---------------------------------------------
