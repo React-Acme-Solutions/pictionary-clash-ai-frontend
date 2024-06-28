@@ -155,10 +155,4 @@ Please have everyone’s name at the top of the doc.
 
 Submit a link to your GitHub markdown file where you have created your Team Agreement.
 
-This step must be completed and approved before proceeding with any project work. Notify your instructor when this is ready for review.
 
-## Wireframe
-
-![wireframe]()
-
-![uml]()
