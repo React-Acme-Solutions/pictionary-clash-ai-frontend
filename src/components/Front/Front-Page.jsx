@@ -8,7 +8,7 @@ const FrontPage = () => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    const video = videoRef.current;
+    const video = videoRef.current; 
 
     const handleVideoEnded = () => {
       // Pause the video when it ends
