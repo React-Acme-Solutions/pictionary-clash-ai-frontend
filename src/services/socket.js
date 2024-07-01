@@ -1,6 +1,9 @@
-// src/services/socket.js
-import { io } from 'socket.io-client';
+'use strict';
 
-const socket = io('http://localhost:3000'); // Adjust the URL as needed
+const SERVER_URL = 'http://localhost:3000';
+const io = require('socket.io-client');
+const socket = io.connect(SERVER_URL);
 
-export default socket;
+socket.on('connect', () => {
+  console.log('Connected to server');
+});
