@@ -1,0 +1,22 @@
+/* styles/global-styles.scss or any CSS file */
+.image-center {
+  text-align: center;
+  margin-bottom: 20px; /* Adjust margin as needed */
+}
+
+.category-flip-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category-flip-card div {
+  /* Your styles for individual category cards */
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #010101;
+}
+
+body {
+  background-color: #21a29e;
+}
