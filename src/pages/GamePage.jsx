@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DrawingCanvas from '../components/DrawingCanvas';
 import CategoryFlipCard from '../components/CategoryFlipCard';
 import Scoreboard from '../components/Scoreboard';
 import Login from '../components/Login'; // Assuming you have a Login component
 import { io } from 'socket.io-client';
 import { Link } from 'react-router-dom'; // Import Link for navigation
+import '../styles/GamePage.scss'; // Adjust the path if necessary
 
 const socket = io('http://localhost:3000'); // Adjust the URL as needed
 
@@ -12,6 +13,16 @@ const GamePage = () => {
   const [username, setUsername] = useState('');
   const [categories] = useState(['Animal', 'Food', 'Object']);
   const [scores, setScores] = useState([]);
+
+  useEffect(() => {
+    socket.on('updateScores', (newScores) => {
+      setScores(newScores);
+    });
+
+    return () => {
+      socket.off('updateScores');
+    };
+  }, []);
 
   const handleLogin = (username) => {
     setUsername(username);
@@ -22,17 +33,15 @@ const GamePage = () => {
     socket.emit('categorySelected', category);
   };
 
-  socket.on('updateScores', (newScores) => {
-    setScores(newScores);
-  });
-
   return (
     <div>
       {!username ? (
         <Login onLogin={handleLogin} />
       ) : (
         <>
-          <DrawingCanvas socket={socket} />
+          <div className="drawing-canvas-container">
+            <DrawingCanvas socket={socket} />
+          </div>
           <CategoryFlipCard categories={categories} onSelect={handleCategorySelect} />
           <Scoreboard scores={scores} />
         </>
