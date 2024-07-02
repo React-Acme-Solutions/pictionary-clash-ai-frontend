@@ -49,7 +49,7 @@ const GamePage = () => {
 
       {/* Example link back to home */}
       <div className="back-home-link">
-        <Link to="/">Back to Home</Link>
+        <Link to="/home">Back to Home</Link>
       </div>
     </div>
   );
