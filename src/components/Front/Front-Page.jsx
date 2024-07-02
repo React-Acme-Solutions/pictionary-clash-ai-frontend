@@ -39,7 +39,7 @@ const FrontPage = () => {
   return (
     <div className="front-page">
       {/* Animation container */}
-      <a href="/game">
+      <a href="/home">
         <div className="animation-container">
           <video autoPlay loop muted ref={videoRef}>
             <source src="./src/animations/pictionary_clash.mp4" type="video/mp4" />

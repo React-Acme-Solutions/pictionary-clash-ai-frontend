@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import CanvasDraw from 'react-canvas-draw';
-import { establishConnection, create, join, start, draw, guess, test } from './services/socket';
+import { establishConnection, create, join, start, draw, guess, test } from '../services/socket';
 import { io } from 'socket.io-client';
 
 const DrawingCanvas = () => {
