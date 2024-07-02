@@ -1,7 +1,8 @@
 'use strict';
 
-const SERVER_URL = 'http://localhost:3000';
-const io = require('socket.io-client');
+import { io } from 'socket.io-client';
+
+const SERVER_URL = import.meta.env.REACT_APP_SERVER_URL;
 const socket = io.connect(SERVER_URL);
 
 const game = {
@@ -11,7 +12,7 @@ const game = {
   word: null,
   canvas: null,
   scores: {}
-}
+};
 
 socket.on('connect', () => {
   console.log('Connected to server');
@@ -73,7 +74,7 @@ function create() {
 
   socket.on('game-created', (gameId) => {
     game.ID = gameId;
-    console.log('GAME ID:', game.ID)
+    console.log('GAME ID:', game.ID);
   });
 }
 
@@ -93,4 +94,8 @@ function guess(wordGuess) {
   socket.emit('make-guess', { ID: game.ID, guess: wordGuess });
 }
 
-module.exports = { game, create, join, start, draw, guess }
+function test() {
+  console.log('123');
+}
+
+export { game, create, join, start, draw, guess, test }

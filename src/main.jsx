@@ -1,8 +1,6 @@
-// main.jsx (or index.js)
 import React from 'react';
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App';
-require('dotenv').config();
+import { game, create, join, start, draw, guess, test } from './services/socket';
 
-// Use createRoot instead of ReactDOM.render
 createRoot(document.getElementById('root')).render(<App />);
