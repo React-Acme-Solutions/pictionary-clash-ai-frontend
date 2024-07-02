@@ -11,7 +11,8 @@ const game = {
 };
 
 function establishConnection(io) {
-  const SERVER_URL = import.meta.env.REACT_APP_SERVER_URL;
+  const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+  console.log('url', SERVER_URL);
   socket = io.connect(SERVER_URL);
 
   socket.on('connect', () => {
