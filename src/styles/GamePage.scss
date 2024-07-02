@@ -1,0 +1,10 @@
+/* src/pages/GamePage.css */
+.drawing-canvas-container {
+  width: 100%;
+  max-width: 800px; /* Adjust as needed */
+  margin: 0 auto; /* Center the container */
+  padding: 20px; /* Adjust as needed */
+  border: 1px solid #ccc; /* Optional: Add a border */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+  background-color: rgb(43, 220, 230);
+}
