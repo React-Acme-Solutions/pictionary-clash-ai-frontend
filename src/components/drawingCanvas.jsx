@@ -76,12 +76,13 @@ const DrawingCanvas = () => {
     <div>
       <CanvasDraw
         ref={canvasRef}
-        brushRadius={2}
+        brushRadius={3}
         lazyRadius={0}
-        brushColor="#000"
+        brushColor="#fff"
         canvasWidth={800}
         canvasHeight={600}
         onChange={handleCanvasChange}
+        backgroundColor='#000'
       />
       <div>
         <button onClick={clearDrawing}>Clear Drawing</button>
