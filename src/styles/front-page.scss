@@ -62,3 +62,26 @@ body {
   width: 740px; /* Set width to 240px */
   height: auto; /* Maintain aspect ratio */
 }
+
+.front-page {
+  position: relative;
+
+  .animation-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  video {
+    position: relative; // or absolute, depending on your layout
+    z-index: 10; // Set this to a higher value if needed
+    width: 100%; // Adjust to your needs
+    height: auto; // Adjust to your needs
+  }
+
+  .category-flip-card {
+    position: relative;
+    z-index: 1; // Lower than the video
+  }
+}
+

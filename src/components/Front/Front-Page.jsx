@@ -39,10 +39,10 @@ const FrontPage = () => {
   return (
     <div className="front-page">
       {/* Animation container */}
-      <a href="/home">
+      <a href="/game">
         <div className="animation-container">
-          <video autoPlay loop muted ref={videoRef}>
-            <source src="./src/animations/pictionary_clash.mp4" type="video/mp4" />
+          <video autoPlay muted ref={videoRef}>
+            <source src="./src/animations/output.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
         </div>
