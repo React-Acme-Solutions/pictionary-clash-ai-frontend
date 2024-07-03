@@ -1,12 +1,20 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import { establishConnection, create, join, start, draw, guess, test } from '../services/socket';
 import { io } from 'socket.io-client';
 
 const DrawingCanvas = () => {
   const canvasRef = useRef(null);
+  const [joinCode, setJoinCode] = useState('');
+  const [guessText, setGuessText] = useState('');
 
-  establishConnection(io);
+  const loadCanvas = (canvas) => {
+    canvasRef.current.loadSaveData(canvas, true);
+  };
+
+  useEffect(() => {
+    establishConnection(io, loadCanvas);
+  }, []);
 
   const handleCanvasChange = () => {
     const data = canvasRef.current.getSaveData();
@@ -15,14 +23,27 @@ const DrawingCanvas = () => {
 
   const clearDrawing = () => {
     canvasRef.current.clear();
-		const data = canvasRef.current.getSaveData();
-		draw(data);
+    const data = canvasRef.current.getSaveData();
+    draw(data);
   };
 
   const undoLast = () => {
     canvasRef.current.undo();
-		const data = canvasRef.current.getSaveData();
-		draw(data);
+    const data = canvasRef.current.getSaveData();
+    draw(data);
+  };
+
+  const createGame = () => {
+    create();
+  };
+
+  const joinGame = () => {
+    join(joinCode);
+  };
+
+  const handleGuess = () => {
+    guess(guessText);
+    setGuessText('');
   };
 
   return (
@@ -39,9 +60,24 @@ const DrawingCanvas = () => {
       <div>
         <button onClick={clearDrawing}>Clear Drawing</button>
         <button onClick={undoLast}>Undo Last</button>
-				<button onClick={create}>Create</button>
-				<button onClick={join}>Join</button>
-				<button onClick={start}>Start</button>
+        <button onClick={createGame}>Create</button>
+        <input
+          type="text"
+          value={joinCode}
+          onChange={(e) => setJoinCode(e.target.value)}
+          placeholder="Enter join code"
+        />
+        <button onClick={joinGame}>Join</button>
+        <button onClick={start}>Start</button>
+      </div>
+      <div>
+        <input
+          type="text"
+          value={guessText}
+          onChange={(e) => setGuessText(e.target.value)}
+          placeholder="Enter your guess"
+        />
+        <button onClick={handleGuess}>Guess</button>
       </div>
     </div>
   );
