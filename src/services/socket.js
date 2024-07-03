@@ -10,7 +10,7 @@ const game = {
   scores: {}
 };
 
-function establishConnection(io) {
+function establishConnection(io, loadCanvas) {
   const SERVER_URL = import.meta.env.VITE_SERVER_URL;
   console.log('url', SERVER_URL);
   socket = io.connect(SERVER_URL);
@@ -26,6 +26,8 @@ function establishConnection(io) {
   socket.on('player-list', (payload) => {
     if (game.players) {
       console.log('New player joined:', payload.newPlayer);
+    } else {
+      console.log('Players:', payload.list);
     }
     game.players = payload.list;
   });
@@ -35,16 +37,19 @@ function establishConnection(io) {
   });
 
   socket.on('new-round', (drawer) => {
+    game.drawer = false;
     console.log(`New round. ${drawer} is drawing.`);
   });
 
   socket.on('draw', (word) => {
+    game.drawer = true;
     console.log('You are drawing. Your word is:', word);
   });
 
   socket.on('canvas-update', (canvas) => {
-    if (game.word === null) {
+    if (!game.drawer) {
       game.canvas = canvas;
+      loadCanvas(game.canvas);
     }
   });
 
@@ -85,7 +90,7 @@ function join(ID) {
 }
 
 function start() {
-  socket.emit('start-game');
+  socket.emit('start-game', game.ID);
 }
 
 function draw(canvas) {
