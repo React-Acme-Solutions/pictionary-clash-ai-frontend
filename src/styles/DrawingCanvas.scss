@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 220px;
+}
+
+.canvas-container {
+  margin-bottom: 20px;
+}
+
+.button-container,
+.guess-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.button-container input,
+.guess-container input {
+  padding: 5px;
+  font-size: 16px;
+}
+
+.button-container button,
+.guess-container button {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5 px;
+  background-color: #5b11b7;
+  color: rgb(255, 255, 255);
+  transition: background-color 0.3s;
+}
+
+.button-container button:hover,
+.guess-container button:hover {
+  background-color: #0f86a1;
+}
+
+.home-link {
+  text-decoration: none; /* Remove underline */
+  display: block; /* Ensures the link takes full width of its container */
+  text-align: center; /* Centers the text */
+  margin-top: 20px; /* Example margin for spacing */
+}
