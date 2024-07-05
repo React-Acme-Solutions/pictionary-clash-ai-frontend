@@ -46,11 +46,9 @@ const GamePage = () => {
       ) : (
         <>
           <Announcements text={announcements} />
-          <Scores text={scores} />
           <div className="drawing-canvas-container">
             <DrawingCanvas />
           </div>
-          <Guesses text={guesses} />
           <AI text={ai} />
         </>
       )}

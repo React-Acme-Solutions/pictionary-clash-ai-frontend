@@ -24,10 +24,6 @@ function establishConnection(io, loadCanvas, clearDrawing, handleSendCanvas) {
 
   socket.on('connect', () => {
     console.log('Connected to server');
-    updateScoresCallback('test');
-    updateGuessesCallback('test');
-    updateAnnouncementsCallback('test');
-    updateAiCallback('test');
   });
 
   socket.on('error', (message) => {
@@ -41,6 +37,7 @@ function establishConnection(io, loadCanvas, clearDrawing, handleSendCanvas) {
     } else {
       game.players = payload.list;
       console.log('Players:', payload.list);
+      updateAnnouncementsCallback('Game Joined');
     }
   });
 
@@ -102,7 +99,7 @@ function establishConnection(io, loadCanvas, clearDrawing, handleSendCanvas) {
   })
 
   socket.on('game-ended', (winner) => {
-    console.log(winner, 'won!');
+    console.log(game.names[winner], 'won!');
     updateAnnouncementsCallback(`${game.names[winner]} won the game with ${game.scores[winner]} points!`);
   });
 
@@ -112,6 +109,7 @@ function establishConnection(io, loadCanvas, clearDrawing, handleSendCanvas) {
 
   socket.on('ai-guess', (guess) => {
     console.log(`The AI guessed "${guess}"`);
+    updateAiCallback(`The AI guessed that the word was ${guess}`);
   });
 }
 
@@ -150,6 +148,7 @@ function create() {
     game.ID = gameId;
     console.log('GAME ID:', game.ID);
     socket.emit('name-declare', { ID: game.ID, name: game.myName });
+    updateAnnouncementsCallback(`Game Created. Join Code: ${game.ID}`);
   });
 }
 
