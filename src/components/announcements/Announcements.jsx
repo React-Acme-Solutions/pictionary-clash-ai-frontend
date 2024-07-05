@@ -1,11 +1,11 @@
-
 import React from 'react';
 
-const Announcements = () => {
+const Announcements = (text) => {
+  console.log('text:', text);
   return (
     <div className="announcements-container">
       <h2>Announcements</h2>
-      <p>This is the announcements area.</p>
+      <p>{text.text}</p>
     </div>
   );
 };
