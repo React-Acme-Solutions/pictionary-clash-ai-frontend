@@ -12,6 +12,8 @@ const game = {
   scores: {}
 };
 
+game.names[socket.id];
+
 function establishConnection(io, loadCanvas, clearDrawing, handleSendCanvas) {
   const SERVER_URL = import.meta.env.VITE_SERVER_URL;
   console.log('url', SERVER_URL);
