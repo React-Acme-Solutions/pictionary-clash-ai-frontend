@@ -29,9 +29,9 @@ const GamePage = () => {
         </>
       )}
 
-      {/* Example link back to home */}
+      {/* Styled button to go back to home */}
       <div className="back-home-link">
-        <Link to="/home">Back to Home</Link>
+        <Link to="/home" className="styled-button">Go to Home</Link>
       </div>
     </div>
   );
