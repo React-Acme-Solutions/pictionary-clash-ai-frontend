@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import { establishConnection, create, join, start, draw, guess } from '../services/socket';
 import { io } from 'socket.io-client';
+import '../styles/DrawingCanvas.scss'; // Import DrawingCanvas styles
 
 const DrawingCanvas = () => {
   const canvasRef = useRef(null);
@@ -73,7 +74,7 @@ const DrawingCanvas = () => {
   };
 
   return (
-    <div>
+    <div className="drawing-canvas">
       <CanvasDraw
         ref={canvasRef}
         brushRadius={3}
@@ -84,7 +85,7 @@ const DrawingCanvas = () => {
         onChange={handleCanvasChange}
         backgroundColor='#000'
       />
-      <div>
+      <div className="button-group">
         <button onClick={clearDrawing}>Clear Drawing</button>
         <button onClick={undoLast}>Undo Last</button>
         <button onClick={createGame}>Create</button>
@@ -97,7 +98,7 @@ const DrawingCanvas = () => {
         <button onClick={joinGame}>Join</button>
         <button onClick={start}>Start</button>
       </div>
-      <div>
+      <div className="guess-section">
         <input
           type="text"
           value={guessText}
