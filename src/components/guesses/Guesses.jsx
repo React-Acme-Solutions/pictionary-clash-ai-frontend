@@ -1,5 +1,4 @@
 import React from 'react';
-import './guesses/Guesses.scss'; // Import SCSS file
 
 const Guesses = () => {
   return (

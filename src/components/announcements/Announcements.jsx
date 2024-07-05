@@ -1,6 +1,5 @@
 
 import React from 'react';
-import './announcements/Announcements.scss'; // Import SCSS file
 
 const Announcements = () => {
   return (
