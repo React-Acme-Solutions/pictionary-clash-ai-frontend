@@ -3,12 +3,16 @@
 let socket;
 const game = {
   ID: null,
+  myName: null,
   players: null,
+  names: null,
   drawer: null,
   word: null,
   canvas: null,
   scores: {}
 };
+
+game.names[socket.id];
 
 function establishConnection(io, loadCanvas, clearDrawing, handleSendCanvas) {
   const SERVER_URL = import.meta.env.VITE_SERVER_URL;
@@ -30,6 +34,10 @@ function establishConnection(io, loadCanvas, clearDrawing, handleSendCanvas) {
       console.log('Players:', payload.list);
     }
     game.players = payload.list;
+  });
+
+  socket.on('names', (names) => {
+    game.names = names;
   });
 
   socket.on('game-started', () => {
@@ -75,6 +83,10 @@ function establishConnection(io, loadCanvas, clearDrawing, handleSendCanvas) {
     console.log(`${payload.player} guessed "${payload.guess}"`);
   });
 
+  socket.on('word-reveal', (word) => {
+    console.log(`The word was "${word}"`);
+  })
+
   socket.on('game-ended', (winner) => {
     console.log(winner, 'won!');
   });
@@ -88,6 +100,10 @@ function establishConnection(io, loadCanvas, clearDrawing, handleSendCanvas) {
   });
 }
 
+function nameChoose(name) {
+  game.myName = name;
+}
+
 function create() {
   socket.emit('create');
 
@@ -95,11 +111,14 @@ function create() {
     game.ID = gameId;
     console.log('GAME ID:', game.ID);
   });
+
+  socket.emit('name-declare', { ID: game.ID, name: game.myName });
 }
 
 function join(ID) {
   game.ID = ID;
   socket.emit('join', ID);
+  socket.emit('name-declare', { ID: game.ID, name: game.myName });
 }
 
 function start() {
@@ -120,4 +139,4 @@ function test() {
   console.log('123');
 }
 
-export { establishConnection, create, join, start, draw, guess, test };
+export { establishConnection, nameChoose, create, join, start, draw, guess, test };

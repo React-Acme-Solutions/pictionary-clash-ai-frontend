@@ -1,11 +1,13 @@
 // src/components/Login.js
 import React, { useState } from 'react';
+import { nameChoose } from '../services/socket';
 
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    nameChoose(username);
     onLogin(username);
   };
 
