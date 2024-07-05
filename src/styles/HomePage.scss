@@ -1,0 +1,19 @@
+/* HomePage.scss */
+.homePage {
+  text-align: center;
+  margin-top: 50px; /* Adjust margin as needed */
+}
+
+.startGameLink {
+  display: inline-block;
+  background-color: #007bff; /* Example background color */
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px;
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+.startGameLink:hover {
+  background-color: #0056b3; /* Darker color on hover */
+}
