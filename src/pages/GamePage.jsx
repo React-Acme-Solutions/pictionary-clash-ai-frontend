@@ -6,9 +6,28 @@ import Guesses from '../components/guesses/Guesses';
 import Login from '../components/Login'; // Assuming you have a Login component
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import '../styles/GamePage.scss'; // Adjust the path if necessary
+import { establishConnection, setUpdateScoresCallback, setUpdateGuessesCallback, setUpdateAnnouncementsCallback } from '../services/socket';
 
 const GamePage = () => {
   const [username, setUsername] = useState('');
+
+  const [scores, setScores] = useState('');
+  const [guesses, setGuesses] = useState('');
+  const [announcements, setAnnouncements] = useState('');
+
+  useEffect(() => {
+    setUpdateScoresCallback((newScores) => {
+      setScores(newScores);
+    });
+
+    setUpdateGuessesCallback((player, guess) => {
+      setGuesses((prevGuesses) => [...prevGuesses, { player, guess }]);
+    });
+
+    setUpdateAnnouncementsCallback((type, data) => {
+      setAnnouncements((prevAnnouncements) => [...prevAnnouncements, { type, data }]);
+    });
+  }, []);
 
   const handleLogin = (username) => {
     setUsername(username);
@@ -20,12 +39,12 @@ const GamePage = () => {
         <Login onLogin={handleLogin} />
       ) : (
         <>
-          <Announcements />
-          <Scores />
+          <Announcements text={announcements} />
+          <Scores text={scores} />
           <div className="drawing-canvas-container">
             <DrawingCanvas />
           </div>
-          <Guesses />
+          <Guesses text={guesses} />
         </>
       )}
 

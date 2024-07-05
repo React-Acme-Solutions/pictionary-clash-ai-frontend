@@ -12,6 +12,10 @@ const game = {
   scores: {}
 };
 
+let updateScoresCallback = () => {};
+let updateGuessesCallback = () => {};
+let updateAnnouncementsCallback = () => {};
+
 function establishConnection(io, loadCanvas, clearDrawing, handleSendCanvas) {
   const SERVER_URL = import.meta.env.VITE_SERVER_URL;
   console.log('url', SERVER_URL);
@@ -98,6 +102,19 @@ function establishConnection(io, loadCanvas, clearDrawing, handleSendCanvas) {
   });
 }
 
+function setUpdateScoresCallback(callback) {
+  updateScoresCallback = callback;
+}
+
+function setUpdateGuessesCallback(callback) {
+  updateGuessesCallback = callback;
+}
+
+function setUpdateAnnouncementsCallback(callback) {
+  updateAnnouncementsCallback = callback;
+}
+
+
 function nameChoose(name) {
   game.myName = name;
 }
@@ -137,4 +154,15 @@ function test() {
   console.log('123');
 }
 
-export { establishConnection, nameChoose, create, join, start, draw, guess, test };
+export { establishConnection, 
+  nameChoose, 
+  create, 
+  join, 
+  start, 
+  draw, 
+  guess, 
+  test,
+  setUpdateScoresCallback, 
+  setUpdateGuessesCallback, 
+  setUpdateAnnouncementsCallback,
+};

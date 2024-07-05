@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Guesses = () => {
+const Guesses = (text) => {
+  console.log('text:', text);
   return (
     <div className="guesses-container">
       <h2>Guesses</h2>
-      <p>This is the guesses area.</p>
+      <p>{text.text}</p>
     </div>
   );
 };
