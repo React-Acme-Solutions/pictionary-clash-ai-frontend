@@ -1,6 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import CategoryFlipCard from "../CategoryFlipCard";
-import ImageCenter from "./ImageCenter";
 
 import "../../styles/front-page.scss"; // Import your custom styles
 
@@ -47,9 +45,6 @@ const FrontPage = () => {
           </video>
         </div>
       </a>
-
-      {/* Pass categories as props to CategoryFlipCard */}
-      <CategoryFlipCard categories={["Category 1", "Category 2", "Category 3"]} />
     </div>
   );
 };

@@ -52,7 +52,7 @@ const DrawingCanvas = () => {
     setGuessText('');
   };
 
-  const handleSendCanvas = (gameId) => {
+  const handleSendCanvas = () => {
     const canvas = canvasRef.current.canvasContainer.childNodes[1];
     canvas.toBlob((blob) => {
       const formData = new FormData();
