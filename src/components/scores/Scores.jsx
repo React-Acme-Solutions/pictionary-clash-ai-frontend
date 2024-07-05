@@ -1,5 +1,4 @@
 import React from 'react';
-import './scores/Scores.scss'; // Import SCSS file
 
 const Scores = () => {
   return (
