@@ -1,11 +1,10 @@
 import React from 'react';
 
-const Scores = (text) => {
-  console.log('text:', text);
+const Scores = ({ text }) => {
   return (
     <div className="scores-container">
       <h2>Scores</h2>
-      <p>{text.text}</p>
+      <p>{text}</p>
     </div>
   );
 };

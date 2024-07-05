@@ -3,10 +3,11 @@ import Announcements from '../components/announcements/Announcements';
 import Scores from '../components/scores/Scores';
 import DrawingCanvas from '../components/drawingCanvas';
 import Guesses from '../components/guesses/Guesses';
+import AI from '../components/ai/AI';
 import Login from '../components/Login'; // Assuming you have a Login component
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import '../styles/GamePage.scss'; // Adjust the path if necessary
-import { establishConnection, setUpdateScoresCallback, setUpdateGuessesCallback, setUpdateAnnouncementsCallback } from '../services/socket';
+import { establishConnection, setUpdateScoresCallback, setUpdateGuessesCallback, setUpdateAnnouncementsCallback, setUpdateAiCallback } from '../services/socket';
 
 const GamePage = () => {
   const [username, setUsername] = useState('');
@@ -14,19 +15,24 @@ const GamePage = () => {
   const [scores, setScores] = useState('');
   const [guesses, setGuesses] = useState('');
   const [announcements, setAnnouncements] = useState('');
+  const [ai, setAi] = useState('');
 
   useEffect(() => {
     setUpdateScoresCallback((newScores) => {
       setScores(newScores);
     });
 
-    setUpdateGuessesCallback((player, guess) => {
-      setGuesses((prevGuesses) => [...prevGuesses, { player, guess }]);
+    setUpdateGuessesCallback((newGuess) => {
+      setGuesses(newGuess);
     });
 
-    setUpdateAnnouncementsCallback((type, data) => {
-      setAnnouncements((prevAnnouncements) => [...prevAnnouncements, { type, data }]);
+    setUpdateAnnouncementsCallback((newAnnouncement) => {
+      setAnnouncements(newAnnouncement);
     });
+
+    setUpdateAiCallback((newAi) => {
+      setAi(newAi);
+    })
   }, []);
 
   const handleLogin = (username) => {
@@ -40,11 +46,10 @@ const GamePage = () => {
       ) : (
         <>
           <Announcements text={announcements} />
-          <Scores text={scores} />
           <div className="drawing-canvas-container">
             <DrawingCanvas />
           </div>
-          <Guesses text={guesses} />
+          <AI text={ai} />
         </>
       )}
 
