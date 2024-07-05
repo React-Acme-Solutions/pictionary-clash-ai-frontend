@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import DrawingCanvas from '../components/DrawingCanvas';
+import DrawingCanvas from '../components/drawingCanvas';
 import CategoryFlipCard from '../components/CategoryFlipCard';
 import Scoreboard from '../components/Scoreboard';
 import Login from '../components/Login'; // Assuming you have a Login component
-import { io } from 'socket.io-client';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import '../styles/GamePage.scss'; // Adjust the path if necessary
-
-const socket = io('http://localhost:3000'); // Adjust the URL as needed
 
 const GamePage = () => {
   const [username, setUsername] = useState('');
