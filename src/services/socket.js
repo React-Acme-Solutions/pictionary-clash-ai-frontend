@@ -82,6 +82,10 @@ function establishConnection(io, loadCanvas, clearDrawing, handleSendCanvas) {
   socket.on('send-canvas', (gameId) => {
     handleSendCanvas(gameId);
   });
+
+  socket.on('ai-guess', (guess) => {
+    console.log(`The AI guessed "${guess}"`);
+  });
 }
 
 function create() {
