@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import { establishConnection, create, join, start, draw, guess } from '../services/socket';
 import { io } from 'socket.io-client';
-import '../styles/DrawingCanvas.scss'; // Import DrawingCanvas styles
 
 const DrawingCanvas = () => {
   const canvasRef = useRef(null);
