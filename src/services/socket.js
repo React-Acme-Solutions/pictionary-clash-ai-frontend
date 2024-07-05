@@ -10,7 +10,7 @@ const game = {
   scores: {}
 };
 
-function establishConnection(io, loadCanvas) {
+function establishConnection(io, loadCanvas, clearDrawing, handleSendCanvas) {
   const SERVER_URL = import.meta.env.VITE_SERVER_URL;
   console.log('url', SERVER_URL);
   socket = io.connect(SERVER_URL);
@@ -37,18 +37,21 @@ function establishConnection(io, loadCanvas) {
   });
 
   socket.on('new-round', (drawer) => {
+    clearDrawing();
     game.drawer = false;
     console.log(`New round. ${drawer} is drawing.`);
   });
 
   socket.on('draw', (word) => {
     game.drawer = true;
+    game.word = word;
     console.log('You are drawing. Your word is:', word);
   });
 
   socket.on('canvas-update', (canvas) => {
     if (!game.drawer) {
       game.canvas = canvas;
+      console.log('Canvas updated for drawer:', canvas);
       loadCanvas(game.canvas);
     }
   });
@@ -65,6 +68,7 @@ function establishConnection(io, loadCanvas) {
     } else {
       game.scores[game.drawer] = 1;
     }
+    console.log('Scores:', game.scores);
   });
 
   socket.on('incorrect-guess', (payload) => {
@@ -73,6 +77,14 @@ function establishConnection(io, loadCanvas) {
 
   socket.on('game-ended', (winner) => {
     console.log(winner, 'won!');
+  });
+
+  socket.on('send-canvas', (gameId) => {
+    handleSendCanvas(gameId);
+  });
+
+  socket.on('ai-guess', (guess) => {
+    console.log(`The AI guessed "${guess}"`);
   });
 }
 
@@ -86,6 +98,7 @@ function create() {
 }
 
 function join(ID) {
+  game.ID = ID;
   socket.emit('join', ID);
 }
 
@@ -95,10 +108,12 @@ function start() {
 
 function draw(canvas) {
   socket.emit('canvas-update', { ID: game.ID, canvas: canvas });
+  console.log('Drawing sent to server:', canvas);
 }
 
 function guess(wordGuess) {
   socket.emit('make-guess', { ID: game.ID, guess: wordGuess });
+  console.log('Guess sent to server:', wordGuess);
 }
 
 function test() {
